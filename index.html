@@ -57,9 +57,6 @@
                             <a href="vacinas.html" class="nav-link">Vacinas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#origem" class="nav-link">Origem</a>
-                        </li>
-                        <li class="nav-item">
                             <a href="#sobre" class="nav-link">Sobre</a>
                         </li>
                         <li class="nav-item">
@@ -75,6 +72,27 @@
                 </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobile-navigation" role="navigation" aria-label="Navegação mobile">
+            <ul class="mobile-nav-list">
+                <li class="mobile-nav-item">
+                    <a href="#home" class="mobile-nav-link active">Home</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="racas.html" class="mobile-nav-link">Raças</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="vacinas.html" class="mobile-nav-link">Vacinas</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#sobre" class="mobile-nav-link">Sobre</a>
+                </li>
+                <li class="mobile-nav-item">
+                    <a href="#contato" class="mobile-nav-link">Contato</a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main id="main" role="main">
@@ -153,147 +171,104 @@
         </section>
 
         <section class="features" id="features" role="region" aria-labelledby="features-title">
-            <div class="features-decoration" aria-hidden="true">
-                <div class="decoration-element"></div>
-                <div class="decoration-element"></div>
-                <div class="decoration-element"></div>
-            </div>
-            
             <div class="container">
                 <header class="features-header">
                     <h2 id="features-title" class="features-title">O que você encontra aqui</h2>
                     <p class="features-subtitle">Ferramentas e informações pensadas especialmente para o criador gaúcho, baseadas nas particularidades do nosso clima e território.</p>
                 </header>
 
-                <div class="features-carousel" role="region" aria-label="Carrossel de funcionalidades">
-                    <div class="features-track">
-                        <article class="feature-card" data-feature="racas">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 2c-1.5 0-3 1-3 3v2c0 1 .5 2 1.5 2.5L12 11l1.5-1.5c1-.5 1.5-1.5 1.5-2.5V5c0-2-1.5-3-3-3z"/>
-                                    <path d="M12 11c-3 0-5.5 2-7 5 1.5 3 4 5 7 5s5.5-2 7-5c-1.5-3-4-5-7-5z"/>
-                                    <circle cx="12" cy="16" r="3"/>
-                                    <path d="M9 19l6 0"/>
-                                    <path d="M6 22c0-3 2-4 6-4s6 1 6 4"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Perfis de Raças</h3>
-                            <p class="feature-description">Fichas completas das principais raças ovinas com dados sobre adaptação ao clima gaúcho, produtividade e características regionais.</p>
-                        </article>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2c-1.5 0-3 1-3 3v2c0 1 .5 2 1.5 2.5L12 11l1.5-1.5c1-.5 1.5-1.5 1.5-2.5V5c0-2-1.5-3-3-3z"/>
+                                <path d="M12 11c-3 0-5.5 2-7 5 1.5 3 4 5 7 5s5.5-2 7-5c-1.5-3-4-5-7-5z"/>
+                                <circle cx="12" cy="16" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Perfis de Raças</h3>
+                        <p class="feature-description">Fichas completas das principais raças ovinas com dados sobre adaptação ao clima gaúcho, produtividade e características regionais.</p>
+                        <a href="racas.html" class="feature-link">
+                            Explorar raças
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14"/>
+                                <path d="M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
 
-                        <article class="feature-card" data-feature="vacinas">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                    <line x1="3" y1="10" x2="21" y2="10"/>
-                                    <path d="M8 14h.01"/>
-                                    <path d="M12 14h.01"/>
-                                    <path d="M16 14h.01"/>
-                                    <path d="M8 18h.01"/>
-                                    <path d="M12 18h.01"/>
-                                    <path d="M16 18h.01"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Calendário de Vacinas</h3>
-                            <p class="feature-description">Cronograma de vacinação específico para o Rio Grande do Sul, com doses, intervalos e épocas ideais organizados por categoria.</p>
-                        </article>
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Calendário de Vacinas</h3>
+                        <p class="feature-description">Cronograma de vacinação específico para o Rio Grande do Sul, com doses, intervalos e épocas ideais organizados por categoria.</p>
+                        <a href="vacinas.html" class="feature-link">
+                            Ver calendário
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14"/>
+                                <path d="M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
 
-                        <article class="feature-card" data-feature="diario">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14,2 14,8 20,8"/>
-                                    <line x1="16" y1="13" x2="8" y2="13"/>
-                                    <line x1="16" y1="17" x2="8" y2="17"/>
-                                    <polyline points="10,9 9,9 8,9"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Diário de Campo</h3>
-                            <p class="feature-description">Relatos práticos e dicas de manejo organizados por data e experiência, compartilhados por produtores da região.</p>
-                        </article>
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Guias Práticos</h3>
+                        <p class="feature-description">Dicas de manejo, alimentação e cuidados específicos para o clima do Rio Grande do Sul, organizados por temas práticos.</p>
+                        <a href="#guias" class="feature-link">
+                            Ver guias
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14"/>
+                                <path d="M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </article>
+                </div>
 
-                        <article class="feature-card" data-feature="mapa">
-                            <div class="feature-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Mapa de Serviços</h3>
-                            <p class="feature-description">Localização de clínicas veterinárias, laboratórios e fornecedores especializados próximos à sua propriedade.</p>
-                        </article>
-
-                        <!-- Duplicate cards for seamless loop -->
-                        <article class="feature-card" data-feature="racas" aria-hidden="true">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M12 2c-1.5 0-3 1-3 3v2c0 1 .5 2 1.5 2.5L12 11l1.5-1.5c1-.5 1.5-1.5 1.5-2.5V5c0-2-1.5-3-3-3z"/>
-                                    <path d="M12 11c-3 0-5.5 2-7 5 1.5 3 4 5 7 5s5.5-2 7-5c-1.5-3-4-5-7-5z"/>
-                                    <circle cx="12" cy="16" r="3"/>
-                                    <path d="M9 19l6 0"/>
-                                    <path d="M6 22c0-3 2-4 6-4s6 1 6 4"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Perfis de Raças</h3>
-                            <p class="feature-description">Fichas completas das principais raças ovinas com dados sobre adaptação ao clima gaúcho, produtividade e características regionais.</p>
-                        </article>
-
-                        <article class="feature-card" data-feature="vacinas" aria-hidden="true">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                                    <line x1="16" y1="2" x2="16" y2="6"/>
-                                    <line x1="8" y1="2" x2="8" y2="6"/>
-                                    <line x1="3" y1="10" x2="21" y2="10"/>
-                                    <path d="M8 14h.01"/>
-                                    <path d="M12 14h.01"/>
-                                    <path d="M16 14h.01"/>
-                                    <path d="M8 18h.01"/>
-                                    <path d="M12 18h.01"/>
-                                    <path d="M16 18h.01"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Calendário de Vacinas</h3>
-                            <p class="feature-description">Cronograma de vacinação específico para o Rio Grande do Sul, com doses, intervalos e épocas ideais organizados por categoria.</p>
-                        </article>
-
-                        <article class="feature-card" data-feature="diario" aria-hidden="true">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                    <polyline points="14,2 14,8 20,8"/>
-                                    <line x1="16" y1="13" x2="8" y2="13"/>
-                                    <line x1="16" y1="17" x2="8" y2="17"/>
-                                    <polyline points="10,9 9,9 8,9"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Diário de Campo</h3>
-                            <p class="feature-description">Relatos práticos e dicas de manejo organizados por data e experiência, compartilhados por produtores da região.</p>
-                        </article>
-
-                        <article class="feature-card" data-feature="mapa" aria-hidden="true">
-                            <div class="feature-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                            </div>
-                            <h3 class="feature-title">Mapa de Serviços</h3>
-                            <p class="feature-description">Localização de clínicas veterinárias, laboratórios e fornecedores especializados próximos à sua propriedade.</p>
-                        </article>
+                <div class="features-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <p class="stat-label">Raças Catalogadas</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <p class="stat-label">Vacinas Organizadas</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <p class="stat-label">Focado no RS</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">2025</span>
+                            <p class="stat-label">Sempre Atualizado</p>
+                        </div>
                     </div>
                 </div>
 
                 <div class="features-cta">
-                    <a href="#features" class="btn btn-primary btn-ripple" aria-label="Conhecer todas as funcionalidades em detalhes">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M9 18l6-6-6-6"/>
-                        </svg>
-                        Conheça todas as funcionalidades
-                    </a>
+                    <h3 class="cta-title">Pronto para começar?</h3>
+                    <p class="cta-description">Explore nossos recursos e torne-se um criador de ovinos mais preparado e bem-sucedido no Rio Grande do Sul.</p>
+                    <div class="cta-buttons">
+                        <a href="racas.html" class="btn btn-primary btn-lg">Explorar Raças</a>
+                        <a href="vacinas.html" class="btn btn-secondary btn-lg">Ver Calendário</a>
+                    </div>
                 </div>
+
+
             </div>
         </section>
     </main>
