@@ -19,7 +19,7 @@
         console.log('OvinoSul - Site initialized successfully');
     }
 
-    // Header functionality
+    // Enhanced Header functionality
     function initializeHeader() {
         const header = document.querySelector('.header');
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -28,14 +28,14 @@
         
         if (!header || !mobileMenuToggle || !nav) return;
 
-        // Scroll handler for header
+        // Scroll handler for header with enhanced glassmorphism
         let lastScrollY = window.scrollY;
         let ticking = false;
 
         function updateHeader() {
             const currentScrollY = window.scrollY;
             
-            if (currentScrollY > 80) {
+            if (currentScrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
@@ -54,10 +54,14 @@
 
         window.addEventListener('scroll', requestTick, { passive: true });
 
-        // Mobile menu toggle
-        mobileMenuToggle.addEventListener('click', function() {
-            const isActive = nav.classList.contains('active');
-            if (isActive) {
+        // Enhanced mobile menu toggle with modern animations
+        let isMenuOpen = false;
+
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (isMenuOpen) {
                 closeMobileMenu();
             } else {
                 openMobileMenu();
@@ -65,74 +69,69 @@
         });
 
         function openMobileMenu() {
-            nav.classList.add('active');
+            isMenuOpen = true;
+            nav.classList.add('mobile-nav-open');
             mobileMenuToggle.classList.add('active');
             document.body.style.overflow = 'hidden';
             mobileMenuToggle.setAttribute('aria-expanded', 'true');
+            mobileMenuToggle.setAttribute('aria-label', 'Fechar menu');
             
-            // Animate menu items
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 100 + (index * 100));
-            });
+            // Add backdrop blur effect to body
+            document.body.style.backdropFilter = 'blur(4px)';
+            
+            // Focus management
+            setTimeout(() => {
+                const firstNavLink = nav.querySelector('.nav-link');
+                if (firstNavLink) firstNavLink.focus();
+            }, 100);
         }
 
         function closeMobileMenu() {
-            nav.classList.remove('active');
+            isMenuOpen = false;
+            nav.classList.remove('mobile-nav-open');
             mobileMenuToggle.classList.remove('active');
             document.body.style.overflow = '';
+            document.body.style.backdropFilter = '';
             mobileMenuToggle.setAttribute('aria-expanded', 'false');
-            
-            // Reset menu items
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(30px)';
-            });
+            mobileMenuToggle.setAttribute('aria-label', 'Abrir menu');
         }
 
-        // Close mobile menu when clicking outside
+        // Close mobile menu when clicking outside or pressing Escape
         document.addEventListener('click', function(e) {
-            if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+            if (isMenuOpen && !nav.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
                 closeMobileMenu();
             }
         });
 
-        // Close mobile menu when clicking nav links
-        navLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                closeMobileMenu();
+                mobileMenuToggle.focus();
+            }
         });
 
-        // Smooth scroll for anchor links
+        // Enhanced nav link interactions with ripple effect
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                const href = link.getAttribute('href');
-                if (href && href.startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        const headerHeight = header.offsetHeight;
-                        const targetPosition = target.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
+                if (isMenuOpen) {
+                    closeMobileMenu();
                 }
+                
+                // Add modern ripple effect
+                createRipple(e, this);
+            });
+
+            // Add hover sound effect (optional)
+            link.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+
+            link.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
             });
         });
 
-        // Ripple effects
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                createRipple(e, link);
-            });
-        });
-
+        // Modern ripple effect function
         function createRipple(e, element) {
             const ripple = document.createElement('span');
             const rect = element.getBoundingClientRect();
@@ -140,29 +139,90 @@
             const x = e.clientX - rect.left - size / 2;
             const y = e.clientY - rect.top - size / 2;
             
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = x + 'px';
-            ripple.style.top = y + 'px';
-            ripple.classList.add('ripple');
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                left: ${x}px;
+                top: ${y}px;
+                width: ${size}px;
+                height: ${size}px;
+                pointer-events: none;
+                animation: ripple-animation 0.6s ease-out;
+            `;
             
+            element.style.position = 'relative';
+            element.style.overflow = 'hidden';
             element.appendChild(ripple);
             
             setTimeout(() => {
-                if (ripple.parentNode) {
-                    ripple.remove();
-                }
+                ripple.remove();
             }, 600);
         }
 
-        // Handle escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
+        // Add ripple animation keyframes if not already added
+        if (!document.querySelector('#ripple-animation')) {
+            const style = document.createElement('style');
+            style.id = 'ripple-animation';
+            style.textContent = `
+                @keyframes ripple-animation {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024 && isMenuOpen) {
                 closeMobileMenu();
             }
         });
 
-        // Initial scroll check
-        updateHeader();
+        // Initialize active nav link based on current page
+        function setActiveNavLink() {
+            const currentPath = window.location.pathname;
+            const currentHash = window.location.hash;
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                
+                const href = link.getAttribute('href');
+                if (href === currentPath || 
+                    (currentPath.includes('index.html') && href.startsWith('#')) ||
+                    (currentPath === '/' && href.startsWith('#')) ||
+                    href === currentPath + '.html') {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        setActiveNavLink();
+
+        // Smooth scroll for anchor links
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').startsWith('#')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
     }
 
     // Hero section functionality
