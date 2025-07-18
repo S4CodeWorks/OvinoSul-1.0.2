@@ -16,35 +16,44 @@
     /* Modern Typography - Single Font Family */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     
-    /* Refined Color Palette 2025 */
-    --color-primary: #2563eb;
-    --color-primary-light: #3b82f6;
-    --color-primary-dark: #1d4ed8;
+    /* Refined Color Palette 2025 - Ovinos Theme */
+    /* Cores primárias inspiradas no campo e natureza */
+    --color-primary: #2d5a3d;        /* Verde campo escuro */
+    --color-primary-light: #3e7354;  /* Verde campo médio */
+    --color-primary-dark: #1e3d28;   /* Verde campo muito escuro */
     
-    --color-neutral-50: #fafafa;
-    --color-neutral-100: #f5f5f5;
-    --color-neutral-200: #e5e5e5;
-    --color-neutral-300: #d4d4d4;
-    --color-neutral-400: #a3a3a3;
-    --color-neutral-500: #737373;
-    --color-neutral-600: #525252;
-    --color-neutral-700: #404040;
-    --color-neutral-800: #262626;
-    --color-neutral-900: #171717;
+    /* Neutros com toque mais quente (bege/terra) */
+    --color-neutral-50: #fefdfb;     /* Branco cremoso */
+    --color-neutral-100: #f8f6f2;    /* Bege muito claro */
+    --color-neutral-200: #ede8e0;    /* Bege claro */
+    --color-neutral-300: #d6cfc3;    /* Bege médio */
+    --color-neutral-400: #a69b8c;    /* Bege escuro */
+    --color-neutral-500: #7a6f63;    /* Marrom claro */
+    --color-neutral-600: #5c5248;    /* Marrom médio */
+    --color-neutral-700: #433a32;    /* Marrom escuro */
+    --color-neutral-800: #2d251f;    /* Marrom muito escuro */
+    --color-neutral-900: #1a120e;    /* Quase preto */
     
-    --color-accent: #059669;
-    --color-accent-light: #10b981;
-    --color-accent-dark: #047857;
+    /* Cor de destaque - laranja terroso */
+    --color-accent: #d97706;          /* Laranja terroso */
+    --color-accent-light: #f59e0b;    /* Laranja claro */
+    --color-accent-dark: #b45309;     /* Laranja escuro */
     
+    /* Cores para sucesso/saúde - verde natural */
+    --color-success: #059669;         /* Verde saúde */
+    --color-success-light: #10b981;   /* Verde saúde claro */
+    --color-success-dark: #047857;    /* Verde saúde escuro */
+    
+    /* Textos com melhor contraste */
     --color-text: var(--color-neutral-900);
-    --color-text-light: var(--color-neutral-600);
-    --color-text-muted: var(--color-neutral-500);
+    --color-text-light: var(--color-neutral-700);  /* Melhor contraste */
+    --color-text-muted: var(--color-neutral-600);  /* Melhor contraste */
     
-    --color-background: #ffffff;
-    --color-background-alt: var(--color-neutral-50);
+    --color-background: var(--color-neutral-50);    /* Fundo cremoso */
+    --color-background-alt: var(--color-neutral-100);
     
-    --color-border: var(--color-neutral-200);
-    --color-border-light: var(--color-neutral-100);
+    --color-border: var(--color-neutral-300);       /* Bordas mais visíveis */
+    --color-border-light: var(--color-neutral-200);
     
     /* Spacing System */
     --space-1: 0.25rem;

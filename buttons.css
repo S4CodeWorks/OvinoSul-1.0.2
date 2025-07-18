@@ -25,7 +25,7 @@
 
 .btn:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.3); /* Updated to use primary color */
 }
 
 .btn:disabled {
@@ -48,22 +48,28 @@
 }
 
 .btn-primary:active {
+    background: var(--color-primary-dark);
     transform: translateY(0);
     box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary {
-    background: var(--color-background);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    box-shadow: none;
 }
 
 .btn-secondary:hover {
-    background: var(--color-background-alt);
-    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: white;
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-outline {
@@ -91,6 +97,7 @@
     color: var(--color-text);
 }
 
+/* Accent Button */
 .btn-accent {
     background: var(--color-accent);
     color: white;
@@ -101,6 +108,10 @@
     background: var(--color-accent-dark);
     box-shadow: var(--shadow-md);
     transform: translateY(-1px);
+}
+
+.btn-accent:focus {
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.3);
 }
 
 /* Button Sizes */

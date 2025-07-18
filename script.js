@@ -118,15 +118,291 @@ function initializeSearch() {
 
     if (!searchInput || !searchBtn) return;
 
-    function performSearch() {
-        const query = searchInput.value.trim();
-        if (query) {
-            // Simple search implementation - can be enhanced
-            console.log('Searching for:', query);
-            // Add your search logic here
-            searchForContent(query);
+    // Create search index for the site
+    const searchIndex = [
+        {
+            title: 'Raças de Ovinos',
+            description: 'Conheça as principais raças de ovinos criadas no Rio Grande do Sul',
+            url: 'racas.html',
+            keywords: ['raças', 'ovinos', 'criação', 'animais', 'rebanho', 'genética']
+        },
+        {
+            title: 'Calendário de Vacinação',
+            description: 'Calendário completo de vacinação para ovinos com datas e vacinas essenciais',
+            url: 'vacinas.html',
+            keywords: ['vacinas', 'vacinação', 'calendário', 'saúde', 'prevenção', 'veterinário']
+        },
+        {
+            title: 'Manejo de Ovinos',
+            description: 'Guia completo para criação e manejo de ovinos no Rio Grande do Sul',
+            url: 'index.html#sobre',
+            keywords: ['manejo', 'criação', 'pampa', 'gaúcho', 'ovinocultura', 'produção']
+        },
+        {
+            title: 'Contato e Suporte',
+            description: 'Entre em contato para dúvidas sobre criação de ovinos',
+            url: 'index.html#contato',
+            keywords: ['contato', 'suporte', 'ajuda', 'dúvidas', 'consultoria']
         }
+    ];
+
+    // Create search results container
+    function createSearchResultsContainer() {
+        if (document.getElementById('global-search-results')) return;
+
+        const searchResultsHTML = `
+            <div id="global-search-results" class="search-results-overlay" style="display: none;">
+                <div class="search-results-container">
+                    <div class="search-results-header">
+                        <h3>Resultados da Busca</h3>
+                        <button class="close-search-results" aria-label="Fechar resultados">×</button>
+                    </div>
+                    <div class="search-results-content">
+                        <div class="search-results-list"></div>
+                        <div class="no-results" style="display: none;">
+                            <p>Nenhum resultado encontrado. Tente outras palavras-chave.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', searchResultsHTML);
+
+        // Add styles for search results
+        const searchStyles = `
+            <style>
+                .search-results-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.8);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: var(--space-4);
+                }
+
+                .search-results-container {
+                    background: var(--color-background);
+                    border-radius: var(--radius-lg);
+                    max-width: 600px;
+                    width: 100%;
+                    max-height: 80vh;
+                    overflow: hidden;
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                }
+
+                .search-results-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: var(--space-4);
+                    border-bottom: 1px solid var(--color-border);
+                    background: var(--color-background-alt);
+                }
+
+                .search-results-header h3 {
+                    margin: 0;
+                    color: var(--color-text);
+                    font-size: var(--font-lg);
+                }
+
+                .close-search-results {
+                    background: none;
+                    border: none;
+                    font-size: 24px;
+                    cursor: pointer;
+                    padding: var(--space-2);
+                    color: var(--color-text-muted);
+                    border-radius: var(--radius-sm);
+                    transition: all var(--transition-fast);
+                }
+
+                .close-search-results:hover {
+                    background: var(--color-neutral-200);
+                    color: var(--color-text);
+                }
+
+                .search-results-content {
+                    padding: var(--space-4);
+                    max-height: 60vh;
+                    overflow-y: auto;
+                }
+
+                .search-result-item {
+                    padding: var(--space-3);
+                    border-radius: var(--radius-md);
+                    margin-bottom: var(--space-3);
+                    border: 1px solid var(--color-border-light);
+                    transition: all var(--transition-fast);
+                    cursor: pointer;
+                }
+
+                .search-result-item:hover {
+                    border-color: var(--color-primary);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+
+                .search-result-title {
+                    font-weight: 600;
+                    color: var(--color-primary);
+                    margin-bottom: var(--space-1);
+                }
+
+                .search-result-description {
+                    color: var(--color-text-light);
+                    font-size: var(--font-sm);
+                    line-height: 1.5;
+                }
+
+                .no-results {
+                    text-align: center;
+                    padding: var(--space-8) var(--space-4);
+                    color: var(--color-text-muted);
+                }
+
+                @media (max-width: 768px) {
+                    .search-results-overlay {
+                        padding: var(--space-2);
+                    }
+                    
+                    .search-results-container {
+                        max-height: 90vh;
+                    }
+                }
+            </style>
+        `;
+
+        document.head.insertAdjacentHTML('beforeend', searchStyles);
     }
+
+    createSearchResultsContainer();
+
+    function performSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        if (!query) return;
+
+        const searchResults = searchInContent(query);
+        showSearchResults(searchResults, query);
+    }
+
+    function searchInContent(query) {
+        const results = [];
+        
+        // Search in predefined content
+        searchIndex.forEach(item => {
+            let score = 0;
+            
+            // Check title
+            if (item.title.toLowerCase().includes(query)) {
+                score += 10;
+            }
+            
+            // Check description
+            if (item.description.toLowerCase().includes(query)) {
+                score += 5;
+            }
+            
+            // Check keywords
+            item.keywords.forEach(keyword => {
+                if (keyword.toLowerCase().includes(query)) {
+                    score += 3;
+                }
+            });
+            
+            if (score > 0) {
+                results.push({ ...item, score });
+            }
+        });
+
+        // Search in current page content
+        if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+            const sections = document.querySelectorAll('section[id]');
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    const heading = section.querySelector('h1, h2, h3');
+                    const title = heading ? heading.textContent : 'Seção da página';
+                    
+                    results.push({
+                        title: title,
+                        description: 'Encontrado na página atual',
+                        url: '#' + section.id,
+                        score: 2
+                    });
+                }
+            });
+        }
+
+        // Sort by score
+        return results.sort((a, b) => b.score - a.score);
+    }
+
+    function showSearchResults(results, query) {
+        const overlay = document.getElementById('global-search-results');
+        const resultsList = overlay.querySelector('.search-results-list');
+        const noResults = overlay.querySelector('.no-results');
+
+        if (results.length === 0) {
+            resultsList.innerHTML = '';
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+            
+            const resultsHTML = results.map(result => `
+                <div class="search-result-item" onclick="navigateToResult('${result.url}')">
+                    <div class="search-result-title">${result.title}</div>
+                    <div class="search-result-description">${result.description}</div>
+                </div>
+            `).join('');
+            
+            resultsList.innerHTML = resultsHTML;
+        }
+
+        overlay.style.display = 'flex';
+
+        // Setup close functionality
+        const closeBtn = overlay.querySelector('.close-search-results');
+        closeBtn.onclick = () => {
+            overlay.style.display = 'none';
+        };
+
+        // Close on overlay click
+        overlay.onclick = (e) => {
+            if (e.target === overlay) {
+                overlay.style.display = 'none';
+            }
+        };
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.style.display === 'flex') {
+                overlay.style.display = 'none';
+            }
+        });
+    }
+
+    // Global function for navigation
+    window.navigateToResult = function(url) {
+        if (url.startsWith('#')) {
+            // Same page anchor
+            const element = document.querySelector(url);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            // External page
+            window.location.href = url;
+        }
+        
+        // Close search results
+        document.getElementById('global-search-results').style.display = 'none';
+    };
 
     // Search event listeners
     searchBtn.addEventListener('click', performSearch);
@@ -138,28 +414,22 @@ function initializeSearch() {
         }
     });
 
-    // Simple search function (can be enhanced with real search)
-    function searchForContent(query) {
-        const lowerQuery = query.toLowerCase();
-        
-        // Search in page content
-        const sections = document.querySelectorAll('section[id]');
-        let found = false;
-        
-        sections.forEach(section => {
-            const text = section.textContent.toLowerCase();
-            if (text.includes(lowerQuery)) {
-                section.scrollIntoView({ behavior: 'smooth' });
-                found = true;
-                return;
+    // Auto-search with debounce
+    let searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            if (searchInput.value.trim().length >= 3) {
+                // Show suggestions for longer queries
+                const results = searchInContent(searchInput.value.trim().toLowerCase());
+                if (results.length > 0) {
+                    // Could show a dropdown with suggestions here
+                }
             }
-        });
-        
-        if (!found) {
-            // Could show a "no results" message
-            console.log('No results found for:', query);
-        }
-    }
+        }, 300);
+    });
+
+    console.log('🔍 Enhanced search functionality initialized');
 }
 
 // Scroll effects and animations

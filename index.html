@@ -9,6 +9,12 @@
     
     <!-- Preload critical resources -->
     <link rel="preload" href="hero.jpg" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
@@ -38,6 +44,38 @@
     <meta name="twitter:title" content="OvinoSul - Criação de Ovinos no Rio Grande do Sul">
     <meta name="twitter:description" content="Seu guia completo para criação de ovinos no RS. Calendário de vacinação, perfis de raças e dicas práticas.">
     <meta name="twitter:image" content="https://ovinosul.com/hero.jpg">
+    
+    <!-- Additional SEO and Performance -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://ovinosul.com/">
+    
+    <!-- PWA and Mobile optimization -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="OvinoSul">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "OvinoSul",
+        "description": "Guia completo para criação de ovinos no Rio Grande do Sul",
+        "url": "https://ovinosul.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://ovinosul.com/?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "OvinoSul"
+        },
+        "keywords": "ovinos, Rio Grande do Sul, vacinação, raças, criação, pecuária, RS, ovinocultura"
+    }
+    </script>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -103,7 +141,7 @@
     <main id="main" role="main">
         <section class="hero" id="home" role="banner">
             <div class="hero-background">
-                <img src="hero.jpg" alt="Paisagem dos pampas gaúchos com rebanho de ovinos ao amanhecer, mostrando a beleza natural do Rio Grande do Sul" class="hero-image">
+                <img src="hero.jpg" alt="Paisagem dos pampas gaúchos com rebanho de ovinos ao amanhecer, mostrando a beleza natural do Rio Grande do Sul" class="hero-image" loading="eager" decoding="async">
                 <div class="hero-overlay"></div>
             </div>
             
