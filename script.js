@@ -13,6 +13,7 @@ function initializeApp() {
     initializeScrollEffects();
     initializeNavigation();
     initializeAnimations();
+    initializeServiceWorker();
 }
 
 // Header functionality
@@ -347,6 +348,32 @@ function preloadImages() {
 // Initialize image preloading
 preloadImages();
 
+// Service Worker Registration
+function initializeServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('Service Worker registered successfully:', registration.scope);
+                    
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // New version available
+                                console.log('New version available! Please refresh.');
+                            }
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        });
+    }
+}
+
 // Error handling
 window.addEventListener('error', function(e) {
     console.error('JavaScript error:', e.error);
@@ -357,5 +384,6 @@ window.OvinoSul = {
     initializeApp,
     initializeHeader,
     initializeMobileMenu,
-    initializeSearch
+    initializeSearch,
+    initializeServiceWorker
 };
