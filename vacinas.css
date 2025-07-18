@@ -1,0 +1,656 @@
+/* Vaccines page specific styles */
+.vaccines-page {
+    padding-top: 5rem;
+}
+
+.page-hero {
+    padding: 4rem 0 6rem;
+    background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+    color: var(--earthy-color);
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    margin: 0 0.5rem;
+}
+
+.page-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+.vaccine-overview {
+    padding: 6rem 0;
+    background: var(--background);
+}
+
+.overview-content h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.overview-content p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    max-width: 800px;
+}
+
+.alert-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(245, 158, 11, 0.02) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+
+.alert-icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.alert-content h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.alert-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.vaccination-calendar {
+    padding: 6rem 0;
+    background: var(--surface);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.calendar-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.view-toggle {
+    display: flex;
+    background: var(--background);
+    border-radius: 0.75rem;
+    padding: 0.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: var(--earthy-color);
+    color: white;
+    box-shadow: 0 2px 8px rgba(180, 83, 9, 0.3);
+}
+
+.filter-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--background);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--earthy-color);
+    box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.1);
+}
+
+.calendar-container {
+    position: relative;
+    background: var(--background);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+}
+
+.calendar-grid {
+    display: none;
+    padding: 2rem;
+}
+
+.calendar-grid.active {
+    display: block;
+}
+
+.monthly-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: var(--border);
+}
+
+.calendar-header {
+    display: contents;
+}
+
+.calendar-day-header {
+    background: var(--earthy-color);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.calendar-day {
+    background: var(--background);
+    padding: 1rem;
+    min-height: 120px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.calendar-day:hover {
+    background: var(--surface);
+}
+
+.calendar-day-number {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.calendar-day.other-month .calendar-day-number {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.vaccine-event {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+    color: white;
+    font-weight: 500;
+}
+
+.vaccine-event.obligatory {
+    background: linear-gradient(135deg, #DC2626, #B91C1C);
+}
+
+.vaccine-event.recommended {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.vaccine-event.booster {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+}
+
+.vaccination-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.vaccination-legend h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-right: 1rem;
+}
+
+.legend-items {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+}
+
+.legend-color.obligatory {
+    background: linear-gradient(135deg, #DC2626, #B91C1C);
+}
+
+.legend-color.recommended {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
+.legend-color.booster {
+    background: linear-gradient(135deg, #2563EB, #1D4ED8);
+}
+
+.vaccines-list {
+    padding: 6rem 0;
+    background: var(--background);
+}
+
+.vaccines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.vaccine-card {
+    background: var(--surface);
+    border-radius: 1.5rem;
+    border: 1px solid var(--border);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.vaccine-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--earthy-color), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.vaccine-card:hover::before {
+    opacity: 1;
+}
+
+.vaccine-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.vaccine-card.obligatory {
+    border-color: rgba(220, 38, 38, 0.2);
+}
+
+.vaccine-card.recommended {
+    border-color: rgba(5, 150, 105, 0.2);
+}
+
+.vaccine-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.vaccine-icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, var(--earthy-color), #D97706);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.vaccine-info {
+    flex: 1;
+}
+
+.vaccine-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+.vaccine-type {
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.vaccine-type.obligatory {
+    background: rgba(220, 38, 38, 0.1);
+    color: #DC2626;
+}
+
+.vaccine-type.recommended {
+    background: rgba(5, 150, 105, 0.1);
+    color: #059669;
+}
+
+.vaccine-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.vaccine-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--background);
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+}
+
+.detail-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.detail-item span {
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+.management-guide {
+    padding: 6rem 0;
+    background: var(--surface);
+}
+
+.management-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.management-card {
+    background: var(--background);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+}
+
+.management-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.management-icon {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(135deg, var(--earthy-color), #D97706);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin: 0 auto 1.5rem;
+}
+
+.management-card h3 {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.management-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.management-card li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+}
+
+.management-card li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--earthy-color);
+    font-weight: 600;
+}
+
+.vaccination-reminder {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--earthy-color), #D97706);
+    color: white;
+    text-align: center;
+}
+
+.reminder-content h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.reminder-content p {
+    font-size: 1.125rem;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.reminder-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.reminder-actions .btn {
+    min-width: 200px;
+}
+
+.reminder-actions .btn-primary {
+    background: white;
+    color: var(--earthy-color);
+    border: 2px solid white;
+}
+
+.reminder-actions .btn-primary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: white;
+}
+
+.reminder-actions .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.reminder-actions .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .vaccines-page {
+        padding-top: 4.5rem;
+    }
+
+    .page-hero {
+        padding: 3rem 0 4rem;
+    }
+
+    .vaccine-overview {
+        padding: 4rem 0;
+    }
+
+    .vaccination-calendar {
+        padding: 4rem 0;
+    }
+
+    .vaccines-list {
+        padding: 4rem 0;
+    }
+
+    .management-guide {
+        padding: 4rem 0;
+    }
+
+    .vaccination-reminder {
+        padding: 4rem 0;
+    }
+
+    .vaccines-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .management-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .view-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .filter-controls {
+        width: 100%;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .monthly-calendar {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-day {
+        min-height: auto;
+        padding: 0.75rem;
+    }
+
+    .vaccination-legend {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .legend-items {
+        justify-content: center;
+    }
+
+    .vaccine-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .vaccine-icon {
+        margin: 0 auto;
+    }
+
+    .detail-item {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .detail-item span {
+        text-align: center;
+    }
+
+    .reminder-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .reminder-actions .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}

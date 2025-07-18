@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário de Vacinação - OvinoSul</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="vacinas.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="mobile.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>OvinoSul</h1>
+                    </a>
+                </div>
+                
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="index.html#home" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="racas.html" class="nav-link">Raças</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="vacinas.html" class="nav-link active">Vacinas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#origem" class="nav-link">Origem</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#sobre" class="nav-link">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html#contato" class="nav-link">Contato</a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <button class="mobile-menu-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="vaccines-page">
+        <section class="page-hero">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Vacinas</span>
+                </div>
+                <h1 class="page-title">Calendário de Vacinação para Ovinos no Rio Grande do Sul</h1>
+                <p class="page-subtitle">Guia completo de vacinas essenciais, cronograma de aplicação e manejo sanitário integrado para manter seu rebanho saudável e produtivo</p>
+            </div>
+        </section>
+
+        <section class="vaccine-overview">
+            <div class="container">
+                <div class="overview-content">
+                    <h2>Programa Sanitário Atualizado 2025</h2>
+                    <p>A vacinação é uma das ferramentas mais eficazes para prevenir doenças, reduzir perdas e garantir a saúde e produtividade do rebanho ovino. Um programa bem planejado contribui para a redução da mortalidade, melhora da produtividade e diminuição dos custos com tratamento.</p>
+                    
+                    <div class="alert-box">
+                        <div class="alert-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <div class="alert-content">
+                            <h3>Importante</h3>
+                            <p>Este é um guia geral. A consulta a um médico veterinário é indispensável para a elaboração de um programa sanitário personalizado para sua propriedade.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vaccination-calendar">
+            <div class="container">
+                <h2 class="section-title">Calendário de Vacinação 2025</h2>
+                
+                <div class="calendar-controls">
+                    <div class="view-toggle">
+                        <button class="toggle-btn active" data-view="monthly">Mensal</button>
+                        <button class="toggle-btn" data-view="annual">Anual</button>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="all">Todas as Vacinas</option>
+                            <option value="obligatory">Obrigatórias</option>
+                            <option value="recommended">Recomendadas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calendar-container">
+                    <div class="calendar-grid monthly-view active" id="monthlyCalendar">
+                        <!-- Monthly calendar will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="calendar-grid annual-view" id="annualCalendar">
+                        <!-- Annual overview will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="vaccination-legend">
+                    <h3>Legenda</h3>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-color obligatory"></div>
+                            <span>Vacinas Obrigatórias</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color recommended"></div>
+                            <span>Vacinas Recomendadas</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color booster"></div>
+                            <span>Reforço Anual</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vaccines-list">
+            <div class="container">
+                <h2 class="section-title">Vacinas Essenciais</h2>
+                
+                <div class="vaccines-grid">
+                    <!-- Brucelose -->
+                    <div class="vaccine-card obligatory" id="brucelose" data-vaccine="brucelose">
+                        <div class="vaccine-header">
+                            <div class="vaccine-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 12l2 2 4-4"/>
+                                    <path d="M21 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+                                    <path d="M3 12c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+                                    <path d="M12 21c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+                                    <path d="M12 3c.552 0 1-.448 1-1s-.448-1-1-1-1 .448-1 1 .448 1 1 1z"/>
+                                    <circle cx="12" cy="12" r="9"/>
+                                </svg>
+                            </div>
+                            <div class="vaccine-info">
+                                <h3 class="vaccine-name">Brucelose</h3>
+                                <span class="vaccine-type obligatory">Obrigatória</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vaccine-content">
+                            <p class="vaccine-description">Prevenção da Brucelose, doença bacteriana que causa abortos, infertilidade e perdas econômicas significativas no rebanho.</p>
+                            
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <strong>Aplicação:</strong>
+                                    <span>Fêmeas de 3 a 8 meses (dose única)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Reforço:</strong>
+                                    <span>Não necessário</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Observações:</strong>
+                                    <span>Seguir orientações do MAPA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Clostridioses -->
+                    <div class="vaccine-card recommended" id="clostridioses" data-vaccine="clostridioses">
+                        <div class="vaccine-header">
+                            <div class="vaccine-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+                            <div class="vaccine-info">
+                                <h3 class="vaccine-name">Clostridioses</h3>
+                                <span class="vaccine-type recommended">Recomendada</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vaccine-content">
+                            <p class="vaccine-description">Prevenção de doenças causadas por bactérias do gênero Clostridium, como carbúnculo sintomático, gangrena gasosa e enterotoxemia.</p>
+                            
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <strong>Primeira dose:</strong>
+                                    <span>Animais no maternal</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Segunda dose:</strong>
+                                    <span>Após 30 dias</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Reforço:</strong>
+                                    <span>Anual para todos os animais</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diarreia Neonatal -->
+                    <div class="vaccine-card recommended" id="diarreia" data-vaccine="diarreia">
+                        <div class="vaccine-header">
+                            <div class="vaccine-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="vaccine-info">
+                                <h3 class="vaccine-name">Diarreia Neonatal</h3>
+                                <span class="vaccine-type recommended">Recomendada</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vaccine-content">
+                            <p class="vaccine-description">Prevenção da diarreia em recém-nascidos, que pode causar desidratação e morte de cordeiros.</p>
+                            
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <strong>Aplicação:</strong>
+                                    <span>Novilhas 60 e 30 dias antes do parto</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Reforço:</strong>
+                                    <span>Anual para todas as matrizes</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Público:</strong>
+                                    <span>Fêmeas reprodutoras</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leptospirose -->
+                    <div class="vaccine-card recommended" id="leptospirose" data-vaccine="leptospirose">
+                        <div class="vaccine-header">
+                            <div class="vaccine-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 9V5a3 3 0 0 0-6 0v4"/>
+                                    <rect x="2" y="9" width="20" height="12" rx="2" ry="2"/>
+                                </svg>
+                            </div>
+                            <div class="vaccine-info">
+                                <h3 class="vaccine-name">Leptospirose</h3>
+                                <span class="vaccine-type recommended">Recomendada</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vaccine-content">
+                            <p class="vaccine-description">Prevenção da Leptospirose, doença bacteriana que pode causar abortos, natimortos e problemas renais.</p>
+                            
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <strong>Primeira dose:</strong>
+                                    <span>Animais no maternal</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Segunda dose:</strong>
+                                    <span>Após 30 dias</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Reforço:</strong>
+                                    <span>Semestral ou trimestral</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Raiva -->
+                    <div class="vaccine-card obligatory" id="raiva" data-vaccine="raiva">
+                        <div class="vaccine-header">
+                            <div class="vaccine-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <div class="vaccine-info">
+                                <h3 class="vaccine-name">Raiva</h3>
+                                <span class="vaccine-type obligatory">Obrigatória</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vaccine-content">
+                            <p class="vaccine-description">Prevenção da Raiva, doença viral fatal que afeta o sistema nervoso central. É uma zoonose.</p>
+                            
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <strong>Aplicação:</strong>
+                                    <span>A partir dos 4 meses de idade</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Reforço:</strong>
+                                    <span>Anual</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Observações:</strong>
+                                    <span>Obrigatória em áreas endêmicas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IBR e BVD -->
+                    <div class="vaccine-card recommended" id="ibr-bvd" data-vaccine="ibr-bvd">
+                        <div class="vaccine-header">
+                            <div class="vaccine-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z"/>
+                                </svg>
+                            </div>
+                            <div class="vaccine-info">
+                                <h3 class="vaccine-name">IBR e BVD</h3>
+                                <span class="vaccine-type recommended">Recomendada</span>
+                            </div>
+                        </div>
+                        
+                        <div class="vaccine-content">
+                            <p class="vaccine-description">Prevenção de doenças respiratórias e reprodutivas. Auxilia na redução das perdas gestacionais.</p>
+                            
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <strong>Primeira dose:</strong>
+                                    <span>Animais no maternal</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Segunda dose:</strong>
+                                    <span>Após 30 dias</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Reforço:</strong>
+                                    <span>Anual para todos os animais</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="management-guide" id="management">
+            <div class="container">
+                <h2 class="section-title">Manejo Sanitário Integrado</h2>
+                
+                <div class="management-grid">
+                    <div class="management-card">
+                        <div class="management-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="9"/>
+                            </svg>
+                        </div>
+                        <h3>Dicas para Vacinação Eficaz</h3>
+                        <ul>
+                            <li>Mantenha vacinas refrigeradas conforme fabricante</li>
+                            <li>Use agulhas e seringas estéreis</li>
+                            <li>Vacine apenas animais saudáveis</li>
+                            <li>Mantenha registro detalhado das aplicações</li>
+                            <li>Descarte materiais corretamente</li>
+                        </ul>
+                    </div>
+
+                    <div class="management-card">
+                        <div class="management-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <h3>Controle de Parasitas</h3>
+                        <ul>
+                            <li>Vermifugação estratégica baseada em exames</li>
+                            <li>Controle de ectoparasitas (carrapatos, moscas)</li>
+                            <li>Rotação de princípios ativos</li>
+                            <li>Monitoramento da resistência</li>
+                            <li>Quarentena de animais novos</li>
+                        </ul>
+                    </div>
+
+                    <div class="management-card">
+                        <div class="management-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Higiene e Nutrição</h3>
+                        <ul>
+                            <li>Manutenção de instalações limpas</li>
+                            <li>Desinfecção regular de equipamentos</li>
+                            <li>Qualidade da água e forragem</li>
+                            <li>Nutrição adequada fortalece imunidade</li>
+                            <li>Descarte correto de animais doentes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="vaccination-reminder">
+            <div class="container">
+                <div class="reminder-content">
+                    <h2>Lembrete Importante</h2>
+                    <p>A prevenção é a melhor estratégia para garantir a saúde e a rentabilidade da sua criação de ovinos. Consulte sempre um médico veterinário para personalizar o programa sanitário da sua propriedade.</p>
+                    
+                    <div class="reminder-actions">
+                        <a href="#contato" class="btn btn-primary">Falar com Veterinário</a>
+                        <a href="#" class="btn btn-secondary" id="downloadCalendar">Baixar Calendário PDF</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="script.js"></script>
+    <script type="module" src="vacinas.js"></script>
+</body>
+</html>
